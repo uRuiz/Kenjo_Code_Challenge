@@ -10,12 +10,11 @@ import { DockerService } from '../../services/docker.service';
 export class HomeComponent {
 
   albumsList: any[] = [];
-  artistsList: any[] = [];
 
-  constructor( private docker: DockerService) { 
+  constructor(private docker: DockerService) {
 
     this.docker.getAllAlbums()
-      .subscribe( (data: any) => {
+      .subscribe((data: any) => {
         this.albumsList = data;
       });
 
