@@ -1,10 +1,10 @@
 
 export class AlbumModel {
   
-  id: string;
+  _id: string;
   title: string;
-  artistID: string;
-  coverURL: string;
+  artistId: string;
+  coverUrl: string;
   year: number;
   genre: string;
 

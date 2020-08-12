@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistModel } from '../../models/artist.model';
-import { DockerService } from '../../services/docker.service';
+import { ArtistsService } from '../../services/artists.service';
 import { NgForm } from '@angular/forms';
+
+import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-artist',
@@ -15,19 +18,46 @@ export class ArtistComponent implements OnInit {
 
   artistsList: any[] = [];
 
-  constructor( private docker: DockerService ) { 
-    this.docker.getAllArtists()
-    .subscribe( (data: any) => {
-      this.artistsList = data;
-    });
+  constructor(private ArtistsService: ArtistsService) {
+
   }
 
   ngOnInit(): void {
   }
 
-  save ( form: NgForm) {
-    console.log(form);
-    console.log(this.artist);
+  save(form: NgForm) {
+
+    if (form.invalid) {
+      console.log('Form is not valid');
+      return;
+    }
+
+    Swal.fire({
+      title: 'Wait',
+      text: 'Saving data',
+      icon: 'info',
+      allowOutsideClick: false
+    });
+    Swal.showLoading();
+
+    let petition: Observable<any>;
+
+    if (this.artist._id) {
+      petition = this.ArtistsService.updateArtist(this.artist)
+
+
+    } else {
+      petition = this.ArtistsService.createArtist(this.artist)
+
+    }
+    petition.subscribe ( resp => {
+      Swal.fire({
+        title: this.artist.name,
+        text: 'Updated successfully',
+        icon: 'success'
+      })
+    })
+
   }
 
 }
