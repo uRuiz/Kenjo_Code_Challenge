@@ -18,7 +18,6 @@ export class ArtistComponent implements OnInit {
   constructor( private docker: DockerService ) { 
     this.docker.getAllArtists()
     .subscribe( (data: any) => {
-      console.log(data);
       this.artistsList = data;
     });
   }

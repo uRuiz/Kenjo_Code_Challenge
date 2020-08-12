@@ -1,9 +1,17 @@
 <div class="row">
   <div class="col text-right">
-    <button routerLink="/album/new"
+    <button routerLink="/album/new" 
             class="btn btn-primary">
       <i class="fa fa-plus">
-        Añadir
+        Add new Album
+      </i>
+    </button>
+  </div>
+  <div class="col text-right">
+    <button routerLink="/artist/new" 
+            class="btn btn-primary">
+      <i class="fa fa-plus">
+        Add new Artist
       </i>
     </button>
   </div>
@@ -14,8 +22,8 @@
     <img [src]="album.coverUrl" class="card-img-top" [alt]="album.title">
     <div class="card-body">
       <h5 class="card-title">{{ album.title }}</h5>
-      <p class="card-text">Release: {{ album.year }}</p>     
-      <p class="card-text">Genre:  <span class="badge badge-dark">{{ album.genre }}</span></p>
+      <p class="card-text">Release: {{ album.year }}</p>
+      <p class="card-text">Genre: <span class="badge badge-dark">{{ album.genre }}</span></p>
     </div>
   </div>
 </div>

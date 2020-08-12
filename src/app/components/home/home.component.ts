@@ -16,7 +16,6 @@ export class HomeComponent {
 
     this.docker.getAllAlbums()
       .subscribe( (data: any) => {
-        console.log(data);
         this.albumsList = data;
       });
 

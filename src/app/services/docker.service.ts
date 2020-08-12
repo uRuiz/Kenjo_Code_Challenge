@@ -13,8 +13,6 @@ export class DockerService {
   }
 
   getAllArtists(){
-    const pepito = this.http.get('http://localhost:3000/artists/all');
-    console.log(pepito)
     return this.http.get('http://localhost:3000/artists/all');
   }
 }
