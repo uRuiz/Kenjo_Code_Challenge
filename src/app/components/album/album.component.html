@@ -1,5 +1,5 @@
-<h1>Album <small>Nombre de album</small></h1>
-
+<h1 *ngIf="album.title">{{ album.title }}</h1>
+<h1 *ngIf="!album.title">New Album</h1>
 <hr>
 
 <div class="row text-right">

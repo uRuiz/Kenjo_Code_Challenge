@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArtistModel } from '../../models/artist.model';
-import { ArtistsService } from '../../services/artists.service';
+import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { ArtistModel } from '../../models/artist.model';
+
+import { ArtistsService } from '../../services/artists.service';
 
 import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-artist',
@@ -20,7 +24,8 @@ export class ArtistComponent implements OnInit {
   artistsList: ArtistModel[] = [];
 
   constructor(private ArtistsService: ArtistsService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -65,6 +70,7 @@ export class ArtistComponent implements OnInit {
         text: 'Updated successfully',
         icon: 'success'
       })
+      this.router.navigate(['/artists']);
     })
 
   }

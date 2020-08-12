@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { AlbumModel } from '../../models/album.model';
 import { ArtistModel } from '../../models/artist.model';
@@ -27,7 +28,8 @@ export class AlbumComponent implements OnInit {
 
   constructor(private artists: ArtistsService, 
               private AlbumsService: AlbumsService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(){
 
@@ -70,12 +72,13 @@ export class AlbumComponent implements OnInit {
       petition = this.AlbumsService.createAlbum( this.album )
     }
 
-    petition.subscribe ( resp => {
+    petition.subscribe( resp => {
       Swal.fire({
         title: this.album.title,
         text: 'Updated successfully',
         icon: 'success'
       })
+      this.router.navigate(['/home']);
     })
 
   }
