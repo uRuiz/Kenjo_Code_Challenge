@@ -32,7 +32,6 @@ export class AlbumComponent implements OnInit {
   save ( form: NgForm) {
     console.log(form);
     console.log(this.album);
-    console.log(this.artist);
   }
 
 }
