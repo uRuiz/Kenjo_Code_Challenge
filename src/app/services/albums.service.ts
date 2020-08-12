@@ -13,11 +13,24 @@ export class AlbumsService {
   constructor( private http: HttpClient) { }
 
   getAllAlbums(){
+
     return this.http.get(`${ this.url }/albums/all`);
+
   }
 
+  getAlbumById( id: string){
 
-  createAlbum(album: AlbumModel ) {
+    return this.http.get(`${ this.url }/album/${ id }`);
+
+  }
+
+  deleteAlbum( id: string) {
+
+    return this.http.delete(`${ this.url }/album/${ id }`);
+
+  }
+
+  createAlbum( album: AlbumModel ){
 
     return this.http.post(`${ this.url }/album`, album)
             .pipe(
@@ -28,7 +41,7 @@ export class AlbumsService {
             )
   }
 
-  updateAlbum( album: AlbumModel ) {
+  updateAlbum( album: AlbumModel ){
 
     const albumTemp = {
       ...album

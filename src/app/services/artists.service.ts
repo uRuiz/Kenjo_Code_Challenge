@@ -16,6 +16,10 @@ export class ArtistsService {
     return this.http.get(`${this.url}/artists/all`);
   }
 
+  getArtistById( id: string) {
+    return this.http.get(`${ this.url }/artist/${ id }`);
+  }
+
   createArtist(artist: ArtistModel) {
 
     return this.http.post(`${this.url}/artist`, artist)

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ArtistModel } from '../../models/artist.model';
 import { ArtistsService } from '../../services/artists.service';
 import { NgForm } from '@angular/forms';
@@ -16,13 +17,21 @@ export class ArtistComponent implements OnInit {
 
   artist: ArtistModel = new ArtistModel();
 
-  artistsList: any[] = [];
+  artistsList: ArtistModel[] = [];
 
-  constructor(private ArtistsService: ArtistsService) {
+  constructor(private ArtistsService: ArtistsService,
+              private route: ActivatedRoute) { }
 
-  }
+  ngOnInit() {
 
-  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if ( id !== 'new') {
+      this.ArtistsService.getArtistById(id)
+        .subscribe( (resp: ArtistModel) => {
+          this.artist = resp;
+        })
+    }
   }
 
   save(form: NgForm) {

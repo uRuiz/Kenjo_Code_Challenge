@@ -13,25 +13,35 @@
   </div>
 </div>
 
-<div class="card-columns">
-  <div *ngFor="let album of albumsList" class="card">
+<div class="card-columns animated fadeIn faster">
+  <div *ngFor="let album of albumsList; let i = index" class="card">
     <img [src]="album.coverUrl" class="card-img-top" [alt]="album.title">
     <div class="card-body">
       <h5 class="card-title">{{ album.title }}</h5>
       <p class="card-text">Release: {{ album.year }}</p>
       <p class="card-text">Genre: <span class="badge badge-dark">{{ album.genre }}</span></p>
+      <button class="btn btn-info mr-1"
+              [routerLink]="['/album', album._id]">
+        <i class="fa fa-pen"></i>
+      </button>
+      <button class="btn btn-danger"
+              (click)="deleteAlbum( album , i)">
+        <i class="fa fa-trash"></i>
+      </button>
     </div>
   </div>
 </div>
 
-<div class="alert alert-warning text-center mt-3">
+<div *ngIf="!loading && albumsList.length === 0" 
+  class="alert alert-warning text-center mt-3 animated fadeIn faster">
   <h4 class="alert-heading">There is no data</h4>
   <p>
     <i class="fa fa-exclamation fa-2x"></i>
   </p>
 </div>
 
-<div class="alert alert-info text-center mt-3">
+<div *ngIf="loading"
+     class="alert alert-info text-center mt-3 animated fadeIn faster">
   <h4 class="alert-heading">Loading</h4>
   <p>
     <i class="fa fa-sync-alt fa-spin fa-2x"></i>
