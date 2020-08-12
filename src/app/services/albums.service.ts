@@ -12,6 +12,11 @@ export class AlbumsService {
 
   constructor( private http: HttpClient) { }
 
+  getAllAlbums(){
+    return this.http.get(`${ this.url }/albums/all`);
+  }
+
+
   createAlbum(album: AlbumModel ) {
 
     return this.http.post(`${ this.url }/album`, album)

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlbumModel } from '../../models/album.model';
 import { ArtistModel } from '../../models/artist.model';
-import { DockerService } from '../../services/docker.service';
+import { ArtistsService } from '../../services/artists.service';
 import { AlbumsService } from '../../services/albums.service';
 import { NgForm } from '@angular/forms';
 
@@ -23,8 +23,8 @@ export class AlbumComponent implements OnInit {
   artistsList: any[] = [];
 
   // constructor() { }
-  constructor(private docker: DockerService, private AlbumsService: AlbumsService) {
-    this.docker.getAllArtists()
+  constructor(private artists: ArtistsService, private AlbumsService: AlbumsService) {
+    this.artists.getAllArtists()
       .subscribe((data: any) => {
         this.artistsList = data;
       });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DockerService } from '../../services/docker.service';
+import { AlbumsService } from '../../services/albums.service';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +11,9 @@ export class HomeComponent {
 
   albumsList: any[] = [];
 
-  constructor(private docker: DockerService) {
+  constructor(private album: AlbumsService) {
 
-    this.docker.getAllAlbums()
+    this.album.getAllAlbums()
       .subscribe((data: any) => {
         this.albumsList = data;
       });
