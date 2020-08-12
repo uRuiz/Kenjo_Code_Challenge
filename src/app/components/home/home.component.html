@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col text-right">
+    <button routerLink="/album/new"
+            class="btn btn-primary">
+      <i class="fa fa-plus">
+        Añadir
+      </i>
+    </button>
+  </div>
+</div>
+
+<div class="card-columns">
+  <div *ngFor="let album of albumsList" class="card">
+    <img [src]="album.coverUrl" class="card-img-top" [alt]="album.title">
+    <div class="card-body">
+      <h5 class="card-title">{{ album.title }}</h5>
+      <p class="card-text">Release: {{ album.year }}</p>     
+      <p class="card-text">Genre:  <span class="badge badge-dark">{{ album.genre }}</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-warning text-center mt-3">
+  <h4 class="alert-heading">There is no data</h4>
+  <p>
+    <i class="fa fa-exclamation fa-2x"></i>
+  </p>
+</div>
+
+<div class="alert alert-info text-center mt-3">
+  <h4 class="alert-heading">Loading</h4>
+  <p>
+    <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+  </p>
+  <p class="mb-0">
+    Wait please
+  </p>
+</div>
