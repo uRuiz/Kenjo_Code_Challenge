@@ -1,33 +1,31 @@
 <div class="row">
   <div class="col text-right">
-    <button routerLink="/album/new" class="btn btn-primary mb-2">
+    <button routerLink="/artist/new" class="btn btn-primary ml-2 mb-2">
       <i class="fa fa-plus">
-        Add new Album
+        Add new Artist
       </i>
     </button>
   </div>
 </div>
 
 <div class="card-columns animated fadeIn faster">
-  <div *ngFor="let album of albumsList; let i = index" class="card">
-    <img [src]="album.coverUrl" class="card-img-top" [alt]="album.title">
+  <div *ngFor="let artist of artistsList; let i = index" class="card">
+    <img [src]="artist.photoUrl" class="card-img-top" [alt]="artist.title">
     <div class="card-body">
-      <h5 class="card-title">{{ album.title }}</h5>
-      <p class="card-text">Release: {{ album.year }}</p>
-      <p class="card-text">Genre: <span class="badge badge-dark">{{ album.genre }}</span></p>
+      <h5 class="card-title text-center">{{ artist.name }}</h5>
       <button class="btn btn-info mr-1"
-              [routerLink]="['/album', album._id]">
+              [routerLink]="['/artist', artist._id]">
         <i class="fa fa-pen"></i>
       </button>
       <button class="btn btn-danger"
-              (click)="deleteAlbum( album , i)">
+              (click)="deleteArtist( artist , i)">
         <i class="fa fa-trash"></i>
       </button>
     </div>
   </div>
 </div>
 
-<div *ngIf="!loading && albumsList.length === 0" 
+<div *ngIf="!loading && artistsList.length === 0" 
   class="alert alert-warning text-center mt-3 animated fadeIn faster">
   <h4 class="alert-heading">There is no data</h4>
   <p>

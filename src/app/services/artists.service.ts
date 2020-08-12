@@ -13,11 +13,21 @@ export class ArtistsService {
   constructor(private http: HttpClient) { }
 
   getAllArtists(){
+
     return this.http.get(`${this.url}/artists/all`);
+
   }
 
   getArtistById( id: string) {
+
     return this.http.get(`${ this.url }/artist/${ id }`);
+
+  }
+
+  deleteArtist( id: string) {
+
+    return this.http.delete(`${ this.url }/artist/${ id }`);
+
   }
 
   createArtist(artist: ArtistModel) {

@@ -22,8 +22,7 @@ export class HomeComponent {
       .subscribe((resp: any) => {
         this.albumsList = resp
         this.loading = false;
-      } );
-
+      });
   }
 
   deleteAlbum( album: AlbumModel, i: number){
