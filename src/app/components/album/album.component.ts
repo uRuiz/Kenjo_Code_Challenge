@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+
 import { AlbumModel } from '../../models/album.model';
 import { ArtistModel } from '../../models/artist.model';
+
 import { ArtistsService } from '../../services/artists.service';
 import { AlbumsService } from '../../services/albums.service';
-import { NgForm } from '@angular/forms';
 
 import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-album',
@@ -20,17 +23,28 @@ export class AlbumComponent implements OnInit {
 
   artist: ArtistModel = new ArtistModel();
 
-  artistsList: any[] = [];
+  artistsList: ArtistModel[] = [];
 
-  // constructor() { }
-  constructor(private artists: ArtistsService, private AlbumsService: AlbumsService) {
+  constructor(private artists: ArtistsService, 
+              private AlbumsService: AlbumsService,
+              private route: ActivatedRoute) { }
+
+  ngOnInit(){
+
     this.artists.getAllArtists()
-      .subscribe((data: any) => {
-        this.artistsList = data;
-      });
-  }
+    .subscribe((data: any) => {
+      this.artistsList = data;
+    });
 
-  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if ( id !== 'new') {
+      this.AlbumsService.getAlbumById(id)
+        .subscribe( (resp: AlbumModel) => {
+          this.album = resp;
+        })
+    }
+
   }
 
   save(form: NgForm) {
