@@ -29,7 +29,7 @@ export class HomeComponent {
 
     Swal.fire({
       title:'Are you sure?',
-      text:`Do you want to delete ${album.title} ?`,
+      text:`Do you want to delete ${ album.title } ?`,
       icon: 'question',
       showConfirmButton: true,
       showCancelButton: true

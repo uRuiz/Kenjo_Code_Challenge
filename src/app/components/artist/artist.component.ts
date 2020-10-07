@@ -57,11 +57,11 @@ export class ArtistComponent implements OnInit {
     let petition: Observable<any>;
 
     if (this.artist._id) {
-      petition = this.ArtistsService.updateArtist(this.artist)
+      petition = this.ArtistsService.updateArtist( this.artist )
 
 
     } else {
-      petition = this.ArtistsService.createArtist(this.artist)
+      petition = this.ArtistsService.createArtist( this.artist )
 
     }
     petition.subscribe ( resp => {

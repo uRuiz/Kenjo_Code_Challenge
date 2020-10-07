@@ -14,7 +14,7 @@ export class ArtistsService {
 
   getAllArtists(){
 
-    return this.http.get(`${this.url}/artists/all`);
+    return this.http.get(`${ this.url }/artists/all`);
 
   }
 
@@ -32,7 +32,7 @@ export class ArtistsService {
 
   createArtist(artist: ArtistModel) {
 
-    return this.http.post(`${this.url}/artist`, artist)
+    return this.http.post(`${ this.url }/artist`, artist)
       .pipe(
         map((resp: any) => {
           artist._id = resp._id;
@@ -50,7 +50,7 @@ export class ArtistsService {
 
     delete artistTemp._id;
 
-    return this.http.put(`${this.url}/artist/${artist._id}`, artistTemp);
+    return this.http.put(`${ this.url }/artist/${ artist._id }`, artistTemp);
 
   }
 
